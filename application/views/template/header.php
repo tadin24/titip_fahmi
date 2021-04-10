@@ -26,7 +26,7 @@
   <!-- Date Picker -->
   <link rel="stylesheet" href="<?= base_url('template/admin') ?>/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="<?= base_url('template/admin') ?>/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  <!-- <link rel="stylesheet" href="<?= base_url('template/admin') ?>/bower_components/bootstrap-daterangepicker/daterangepicker.css"> -->
   <!-- bootstrap wysihtml5 - text editor -->
   <script src="<?= base_url('template/admin') ?>/bower_components/jquery/jquery-1.11.2.min.js"></script>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -58,7 +58,7 @@
   <script src="<?= base_url('template/admin') ?>/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
   <!-- daterangepicker -->
   <script src="<?= base_url('template/admin') ?>/bower_components/moment/min/moment.min.js"></script>
-  <script src="<?= base_url('template/admin') ?>/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <!-- <script src="<?= base_url('template/admin') ?>/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script> -->
   <!-- datepicker -->
   <script src="<?= base_url('template/admin') ?>/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
   <script src="<?= base_url('template/admin') ?>/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
@@ -90,12 +90,16 @@
   <script src="<?= base_url('template/admin') ?>/dist/js/pages/dashboard.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="<?= base_url('template/admin') ?>/dist/js/demo.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+  <script src="<?= base_url() ?>node_modules/jquery-validation/dist/jquery.validate.js"></script>
+  <link rel="stylesheet" href="<?= base_url('template/vendor') ?>/jstree/dist/themes/default/style.css">
+  <script src="<?= base_url('template/vendor') ?>/jstree/dist/jstree.js"></script>
+  <link rel="stylesheet" href="<?= base_url('template/vendor') ?>/select2/dist/css/select2.css">
+  <script src="<?= base_url('template/vendor') ?>/select2/dist/js/select2.js"></script>
   <script>
-    $(document).ready(function() {
-      // Sembunyikan alert validasi kosong
-      $("#kosong").hide();
-    });
+    // $(document).ready(function() {
+    //   // Sembunyikan alert validasi kosong
+    //   $("#kosong").hide();
+    // });
   </script>
 
   <style>
