@@ -1,23 +1,24 @@
 <?php
-
-/**
- * 
- */
-class krisis extends CI_controller
+if (!defined('BASEPATH')) exit(header('Location:../'));
+class Krisis extends CI_controller
 {
+    private $filename = "import_data"; // Kita tentukan nama filenya
+    function __construct()
+    {
+        parent::__construct();
+        if ($this->session->userdata('is_login') != 1) {
+            redirect(base_url(''));
+            exit;
+        };
+        $this->load->model('m_krisis');
+    }
 
-	function __construct()
-	{
-		parent::__construct();
-		if ($this->session->userdata('is_login') != TRUE) {
-			redirect(base_url(''));
-			exit;
-		};
-	}
-
-	public function index()
-	{
-		$x = array('judul' => 'Halaman Administrator');
-		tpl('admin/home', $x);
-	}
+    public function index()
+    {
+        $x = array(
+            'judul' => 'Data krisis',
+            'data' => $this->db->get('krisis')->result_array()
+        );
+        tpl('admin/krisis', $x);
+    }
 }

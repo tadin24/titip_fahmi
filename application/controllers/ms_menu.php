@@ -101,8 +101,10 @@ class Ms_menu extends CI_controller
             $id = $row->menu_id;
             $isi = "$id|$row->menu_kode|$row->menu_name|$row->menu_link|$row->menu_aktif|$row->menu_level|$row->menu_parent_id|$row->menu_parent_kode|$row->menu_icon|$row->menu_parent_name";
 
-            $action .= '<a id="edit" onclick="edit(' . "'$isi'" . ')"><i class="fa fa-pencil text-primary"></i></a>&nbsp;';
-            if ($row->total <= 0) {
+            if ($row->menu_id != 1 && $row->menu_id != 2 && $row->menu_id != 3 && $row->menu_id != 4) {
+                $action .= '<a id="edit" onclick="edit(' . "'$isi'" . ')"><i class="fa fa-pencil text-primary"></i></a>&nbsp;';
+            }
+            if ($row->total <= 0 && $row->menu_id != 1 && $row->menu_id != 2 && $row->menu_id != 3 && $row->menu_id != 4) {
                 $action .= '<a id="delete" onclick="del(' . $id . ')"><i class="fa fa-trash text-danger"></i></a>';
             }
             $records["data"][] = array(
