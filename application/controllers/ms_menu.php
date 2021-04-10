@@ -5,7 +5,7 @@ class Ms_menu extends CI_controller
     function __construct()
     {
         parent::__construct();
-        if ($this->session->userdata('admin') != TRUE) {
+        if ($this->session->userdata('is_login') != 1) {
             redirect(base_url(''));
             exit;
         };
@@ -139,6 +139,7 @@ class Ms_menu extends CI_controller
             "menu_name" => $this->input->post("menu_name"),
             "menu_level" => $this->input->post("menu_level"),
             "menu_link" => $this->input->post("menu_link"),
+            "menu_icon" => $this->input->post("menu_icon"),
             "menu_aktif" => $this->input->post("menu_aktif"),
             "menu_parent_id" => $this->input->post("menu_parent_id"),
             "menu_parent_kode" => $this->input->post("menu_parent_kode"),

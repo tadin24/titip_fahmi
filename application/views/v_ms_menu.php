@@ -52,6 +52,12 @@
               </div>
             </div>
             <div class="form-group row">
+              <label class="control-label col-md-3">Icon</label>
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="menu_icon" name="menu_icon" placeholder="Ikon Menu">
+              </div>
+            </div>
+            <div class="form-group row">
               <label class="control-label col-md-3">Status</label>
               <div class="col-md-6">
                 <select class="form-control" id="menu_aktif" name="menu_aktif" placeholder="Status Menu">

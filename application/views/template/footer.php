@@ -212,6 +212,80 @@
 </div>
 <!-- ./wrapper -->
 
+<script>
+  $.ajax({
+    url: "<?= base_url() . "login/get_sidemenu/" . $this->session->userdata("group_id"); ?>",
+    cache: false,
+    dataType: "json",
+    success: function(res) {
+      if (res.length > 0) {
+        $.each(res, function(index, item) {
+          let menu = treeview = anakPanah = submenu = href = "";
+          if (item.total > 0) {
+            treeview = "treeview"
+          } else {
+            treeview = ""
+          }
+
+          if (item.total > 0) {
+            href = "#"
+          } else {
+            href = "<?= base_url() ?>" + item.menu_link
+          }
+
+          if (item.total > 0) {
+            anakPanah = `
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>`
+          } else {
+            anakPanah = ""
+          }
+
+          if (item.total > 0) {
+            submenu = `<ul class="treeview-menu" style="display:none"></ul>`
+          } else {
+            submenu = ""
+          }
+          if (item.menu_parent_id == 0) {
+            menu = `<li class="${treeview}" id="m${item.menu_id}">
+              <a href="${href}">
+                <i class="${item.menu_icon}"></i> <span>${item.menu_name}</span>
+                ${anakPanah}
+              </a>
+              ${submenu}
+            </li>`
+            // <li class="treeview">
+            //   <a href="#">
+            //     <i class="fa fa-cubes"></i> <span>Data</span>
+            //     <span class="pull-right-container">
+            //       <i class="fa fa-angle-left pull-right"></i>
+            //     </span>
+            //   </a>
+            //   <ul class="treeview-menu">
+
+            //     <li><a href="<?php // echo base_url('admin/overview') 
+                                ?>"><i class="fa fa-circle-o"></i>Overview</a></li>
+            //     <li><a href="<?php // echo base_url('admin/krisis') 
+                                ?>" class="active"><i class="fa fa-circle-o"></i>Rincian</a></li>
+            //   </ul>
+            // </li>
+            $("#sidebarMenu").append(menu)
+          } else {
+            menu = `<li class="${treeview}" id="m${item.menu_id}">
+              <a href="${href}">
+                <i class="fa ${item.menu_icon}"></i> <span>${item.menu_name}</span>
+                ${anakPanah}
+              </a>
+              ${submenu}
+            </li>`
+            $("#m" + item.menu_parent_id + " ul").append(menu)
+          }
+        })
+      }
+    }
+  })
+</script>
 </body>
 
 </html>

@@ -135,16 +135,17 @@
   <div class="wrapper">
     <?php
     //error_reporting(0);
-    if ($this->session->userdata('level') == "admin") {
-      $id  = $this->session->userdata('id_admin');
-      $data = $this->db->get_where('admin', array('id_admin' => $id))->row_array();
-    } elseif ($this->session->userdata('level') == "krisis") {
-      $id  = $this->session->userdata('id_krisis');
-      $data = $this->db->get_where('krisis', array('id_krisis' => $id))->row_array();
-    } elseif ($this->session->userdata('level') == "user") {
-      $id  = $this->session->userdata('id_admin');
-      $data = $this->db->get_where('admin', array('id_admin' => $id))->row_array();
-    }
+    // if ($this->session->userdata('level') == "admin") {
+    //   $id  = $this->session->userdata('id_admin');
+    //   $data = $this->db->get_where('admin', array('id_admin' => $id))->row_array();
+    // } elseif ($this->session->userdata('level') == "krisis") {
+    //   $id  = $this->session->userdata('id_krisis');
+    //   $data = $this->db->get_where('krisis', array('id_krisis' => $id))->row_array();
+    // } elseif ($this->session->userdata('level') == "user") {
+    //   $id  = $this->session->userdata('id_admin');
+    //   $data = $this->db->get_where('admin', array('id_admin' => $id))->row_array();
+    // }
+    // $data = $this->session->userdata();
     ?>
 
     <header class="main-header">
@@ -167,15 +168,15 @@
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                <span class="hidden-xs"><?= $data['nama'] ?></span>
+                <span class="hidden-xs"><?= $session_data['username'] ?></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
 
                   <p>
-                    <?= $data['username'] ?> - <?= $data['nama'] ?>
-                    <small><?= isset($data['log']) ? $data['log'] : ""; ?></small>
+                    <?= $session_data['username'] ?> - <?= $session_data['username'] ?>
+                    <small><?= isset($session_data['log']) ? $session_data['log'] : ""; ?></small>
                   </p>
                 </li>
 
@@ -207,85 +208,15 @@
             <br /><br />
           </div>
           <div class="pull-left info">
-            <p><?= ucfirst($data['nama']) ?></p>
+            <p><?= ucfirst($session_data['username']) ?></p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu" data-widget="tree">
-          <li class="header">MAIN NAVIGATION</li>
-          <li class="active">
-            <a href="<?= base_url('admin/') ?>">
-              <i class="fa fa-th"></i> <span>Dasboard</span>
-              <span class="pull-right-container">
-                <small class="label pull-right bg-green">Home</small>
-              </span>
-            </a>
-          </li>
-
-          <?php if ($this->session->userdata('level') == "admin") { ?>
-
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-cubes"></i> <span>Data</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-
-                <li><a href="<?= base_url('admin/overview') ?>"><i class="fa fa-circle-o"></i>Overview</a></li>
-                <li><a href="<?= base_url('admin/krisis') ?>" class="active"><i class="fa fa-circle-o"></i>Rincian</a></li>
-              </ul>
-            </li>
-
-
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Data User/Hak Akses</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?= base_url('admin/user_admin') ?>" class="active"><i class="fa fa-circle-o"></i>User </a></li>
-              </ul>
-            </li>
-          <?php } elseif ($this->session->userdata('level') == "krisis") { ?>
-
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-pie-chart"></i>
-                <span>Laporan </span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?= base_url('admin/detail_k'); ?>"><i class="fa fa-circle-o"></i> Data krisis</a></li>
-
-              </ul>
-            </li>
-
-          <?php } elseif ($this->session->userdata('level') == "user") { ?>
-
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-pie-chart"></i>
-                <span>Laporan </span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?= base_url('admin/overview'); ?>"><i class="fa fa-circle-o"></i> Rincian</a></li>
-
-              </ul>
-            </li>
-
-          <?php } ?>
-          <li class="header">END MAIN NAVIGATION</li>
+        <ul class="sidebar-menu" data-widget="tree" id="sidebarMenu">
+          <!-- <li class="header">MAIN NAVIGATION</li> -->
+          <!-- <li class="header">END MAIN NAVIGATION</li> -->
         </ul>
       </section>
       <!-- /.sidebar -->

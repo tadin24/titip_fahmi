@@ -1,23 +1,23 @@
 <?php
 
 /**
-* 
-*/
+ * 
+ */
 class krisis extends CI_controller
 {
-	
+
 	function __construct()
 	{
-	 parent:: __construct();
-	 if($this->session->userdata('krisis') != TRUE){
-      redirec(base_url(''));
-      exit;
-	 };
+		parent::__construct();
+		if ($this->session->userdata('is_login') != TRUE) {
+			redirect(base_url(''));
+			exit;
+		};
 	}
 
 	public function index()
 	{
-	 $x = array('judul' =>'Halaman Administrator');
-	 tpl('admin/home',$x);
+		$x = array('judul' => 'Halaman Administrator');
+		tpl('admin/home', $x);
 	}
 }

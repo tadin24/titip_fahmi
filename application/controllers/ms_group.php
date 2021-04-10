@@ -5,7 +5,7 @@ class Ms_group extends CI_controller
     function __construct()
     {
         parent::__construct();
-        if ($this->session->userdata('admin') != TRUE) {
+        if ($this->session->userdata('is_login') != 1) {
             redirect(base_url(''));
             exit;
         };

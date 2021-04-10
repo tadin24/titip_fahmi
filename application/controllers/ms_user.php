@@ -5,7 +5,7 @@ class Ms_user extends CI_controller
     function __construct()
     {
         parent::__construct();
-        if ($this->session->userdata('admin') != TRUE) {
+        if ($this->session->userdata('is_login') != 1) {
             redirect(base_url(''));
             exit;
         };
@@ -28,6 +28,7 @@ class Ms_user extends CI_controller
             "user_fullname",
             "group_id",
             "user_aktif",
+            "is_superuser",
         ];
         $columns_search = [
             "username",
@@ -85,8 +86,10 @@ class Ms_user extends CI_controller
             $id = $row->user_id;
             $isi = "$id|$row->username|$row->user_fullname|$row->group_id|$row->user_aktif";
 
-            $action .= '<a id="edit" onclick="edit(' . "'$isi'" . ')"><i class="fa fa-pencil text-primary"></i></a>&nbsp;
-            <a id="delete" onclick="del(' . $id . ')"><i class="fa fa-trash text-danger"></i></a>';
+            $action .= '<a id="edit" onclick="edit(' . "'$isi'" . ')"><i class="fa fa-pencil text-primary"></i></a>&nbsp;';
+            if ($row->is_superuser != 1 && $this->session->userdata('user_id') != $row->user_id) {
+                $action .= '<a id="delete" onclick="del(' . $id . ')"><i class="fa fa-trash text-danger"></i></a>&nbsp;';
+            }
             $records["data"][] = array(
                 $no++,
                 $row->username,
@@ -119,6 +122,7 @@ class Ms_user extends CI_controller
             "user_fullname" => $this->input->post("user_fullname"),
             "user_aktif" => $this->input->post("user_aktif"),
             "group_id" => $this->input->post("group_id"),
+            "is_superuser" => 0,
             "password" => md5($this->input->post("password")),
             "updated_at" => date("Y-m-d"),
         ];
