@@ -120,9 +120,11 @@ class Ms_user extends CI_controller
             "user_aktif" => $this->input->post("user_aktif"),
             "group_id" => $this->input->post("group_id"),
             "password" => md5($this->input->post("password")),
+            "updated_at" => date("Y-m-d"),
         ];
 
         if ($act == "add") {
+            $data["created_at"] = date("Y-m-d");
             $res = $this->m_ms_user->add($data);
         } else {
             if ($this->input->post("gantiPassword") != "on") {
