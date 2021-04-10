@@ -107,6 +107,27 @@
       color: red;
       border-color: red;
     }
+
+    .form-unit .select2-container,
+    .form-unit .select2-selection {
+      width: 100% !important;
+    }
+
+    .select2 {
+      width: 100% !important;
+    }
+
+    /* .select2-selection__rendered {
+    line-height: 1em !important;
+  } */
+
+    .select2-container .select2-selection--single {
+      height: 35px !important;
+    }
+
+    .select2-selection__arrow {
+      height: 34px !important;
+    }
   </style>
 </head>
 
