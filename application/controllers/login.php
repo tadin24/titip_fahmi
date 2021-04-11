@@ -29,7 +29,7 @@ class Login extends CI_controller
                     $data_user["is_login"] = 1;
                     $this->session->set_userdata($data_user);
                     $this->session->set_flashdata('pesan', '<div class="btn btn-primary">Anda Berhasil Login .....</div>');
-                    redirect(base_url('admin/index'));
+                    redirect(base_url('dashboard'));
                 } else {
                     $this->session->set_flashdata('pesan', '<div class="btn btn-primary">Maaf Akun Anda Sudah Tidak Aktif <br />
                     Minta Admin Untuk Mengaktifkan kembali</div>');
