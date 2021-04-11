@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Apr 2021 pada 17.10
+-- Waktu pembuatan: 11 Apr 2021 pada 11.28
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 7.3.25
 
@@ -57,30 +57,60 @@ CREATE TABLE `krisis` (
   `penghantar` varchar(100) NOT NULL,
   `kv` int(50) NOT NULL,
   `tower` varchar(100) NOT NULL,
-  `tgl` varchar(20) NOT NULL,
-  `update` varchar(20) NOT NULL,
+  `tgl` date NOT NULL,
+  `update` date NOT NULL,
   `jenis` varchar(100) NOT NULL,
   `kkp` varchar(100) NOT NULL,
-  `kelling` varchar(100) NOT NULL,
-  `kelpo` varchar(100) NOT NULL,
-  `kelfo` varchar(100) NOT NULL,
+  `kelling` varchar(100) DEFAULT NULL,
+  `kelpo` varchar(100) DEFAULT NULL,
+  `kelfo` varchar(100) DEFAULT NULL,
   `skoli` varchar(50) NOT NULL,
   `skopo` varchar(50) NOT NULL,
   `skohu` varchar(20) NOT NULL,
-  `klali` varchar(50) NOT NULL,
-  `klapo` varchar(100) NOT NULL,
-  `klahu` varchar(50) NOT NULL,
+  `klali` int(2) NOT NULL COMMENT 'aman = 1, waspada = 2, kritis = 3, belum diasesmen = 0',
+  `klapo` int(2) NOT NULL COMMENT 'aman = 1, waspada = 2, kritis = 3',
+  `klahu` int(2) NOT NULL COMMENT 'atas normal = 1',
   `anomali` varchar(100) NOT NULL,
   `tautan` varchar(50) NOT NULL,
   `penanganan` varchar(100) NOT NULL,
-  `keterangan` varchar(100) NOT NULL,
+  `keterangan` varchar(255) NOT NULL,
   `risiko` varchar(100) NOT NULL,
   `mitigasi` varchar(100) NOT NULL,
-  `foto` varchar(50) NOT NULL,
-  `foto1` varchar(50) NOT NULL,
-  `foto2` varchar(50) NOT NULL,
-  `foto3` varchar(50) NOT NULL
+  `foto1` varchar(50) DEFAULT NULL,
+  `foto2` varchar(50) DEFAULT NULL,
+  `foto3` varchar(50) DEFAULT NULL,
+  `foto4` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `krisis`
+--
+
+INSERT INTO `krisis` (`id_krisis`, `upt`, `ultg`, `penghantar`, `kv`, `tower`, `tgl`, `update`, `jenis`, `kkp`, `kelling`, `kelpo`, `kelfo`, `skoli`, `skopo`, `skohu`, `klali`, `klapo`, `klahu`, `anomali`, `tautan`, `penanganan`, `keterangan`, `risiko`, `mitigasi`, `foto1`, `foto2`, `foto3`, `foto4`) VALUES
+(1, 'UPT Malang', 'ULTG Mojokerto', 'Balongbendo - Sekarputih', 150, '5', '2021-01-27', '2021-01-27', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '16', '60', '161', 2, 2, 1, 'stub korosi', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTT 70kV Sekarputih-Siman-Mendalan', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(2, 'UPT Malang', 'ULTG Mojokerto', 'Balongbendo - Sekarputih', 150, '9', '2021-01-27', '2021-01-27', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '16', '60', '161', 2, 2, 1, 'stub korosi', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTT 70kV Sekarputih-Siman-Mendalan', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(3, 'UPT Malang', 'ULTG Mojokerto', 'Balongbendo - Sekarputih', 150, '15', '2021-01-11', '2021-01-11', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '29', '70', '161', 2, 3, 1, 'stub korosi', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTET 70kV Sekarputih- Tarik', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(4, 'UPT Malang', 'ULTG Mojokerto', 'Balongbendo - Sekarputih', 150, '12', '2021-01-27', '2021-01-27', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '16', '60', '161', 2, 2, 1, 'stub korosi', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTET 70kV Sekarputih- Tarik', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(5, 'UPT Malang', 'ULTG Mojokerto', 'Balongbendo - Sekarputih', 150, '13', '2021-01-27', '2021-01-27', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '16', '70', '161', 2, 3, 1, 'stub korosi', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTET 70kV Sekarputih- Tarik', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(6, 'UPT Malang', 'ULTG Krian', 'Driyorejo - Babadan', 150, '26', '2021-02-09', '2021-02-09', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '82', '5', '161', 3, 1, 1, 'Aliran sungai', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTET 70kV Sekarputih- Tarik', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(7, 'UPT Malang', 'ULTG Mojokerto', 'Grati - Krian', 500, '185', '2021-02-17', '2021-02-17', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '29', '5', '162', 2, 1, 1, 'pondasi retak', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTET 70kV Sekarputih- Tarik', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(8, 'UPT Malang', 'ULTG Krian', 'Gresik - Krian', 500, '8', '2021-02-05', '2021-02-05', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '54', '0', '150', 3, 1, 1, '', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTT 70kV Sengkaling-Mendalan', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(9, 'UPT Malang', 'ULTG Malang', 'Kebonagung - Sengguruh', 70, '53', '2021-01-20', '2021-01-20', 'D.Barata', 'NOK', 'NOK', 'NOK', 'NOK', 'NOK', 'NOK', '169', 3, 3, 1, 'Tower miring', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTET 70kV Siman- Mendalan + Sekarputih', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(10, 'UPT Malang', 'ULTG Malang', 'Kebonagung - Sengguruh', 70, '56', '2021-02-17', '2021-02-17', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '16', '5', '169', 2, 1, 1, 'Tower defleksi', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTET 70kV Siman- Mendalan + Sekarputih', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(11, 'UPT Malang', 'ULTG Malang', 'Kebonagung - Sutami', 150, '19', '2021-02-17', '2021-02-17', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '15', '55', '169', 2, 2, 1, 'kaki tower bunckling (leg B)', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTET 70kV Siman- Mendalan + Sekarputih', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(12, 'UPT Malang', 'ULTG Malang', 'Kebonagung - Sutami', 150, '66', '2021-02-17', '2021-02-17', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '13', '5', '169', 2, 1, 1, 'Tower miring (Isolator line 2 miring kedalam)', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTET 70kV Siman- Mendalan + Sekarputih', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(13, 'UPT Malang', 'ULTG Krian', 'Ngimbang - Krian', 500, '520', '2021-03-09', '2021-03-09', 'D.Barata', 'OK', 'OK', 'OK', 'OK', '68', '0', '151', 3, 1, 1, 'ancaman galian air pada pondasi tower', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTT 70kV Siman-Mendalan + Sekarputih', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(14, 'UPT Malang', 'ULTG Krian', 'Ngimbang - Krian', 500, '505', '2021-03-09', '2021-03-09', 'D.Barata', 'OK', 'OK', 'OK', 'OK', '81', '0', '152', 3, 1, 1, 'Potensi longsoran dari aliran sungai', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTT 70kV Siman-Mendalan + Sekarputih', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(15, 'UPT Malang', 'ULTG Mojokerto', 'Sekarputih - Mojoagung', 150, '37', '2021-02-05', '2021-02-05', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '54', '0', '165', 3, 1, 1, 'Potensi longsoran', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTET 70kV Siman- Mendalan + Sekarputih', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(16, 'UPT Malang', 'ULTG Mojokerto', 'Sekarputih - Ngoro', 150, '1', '2021-02-17', '2021-02-17', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '13', '25', '161', 2, 1, 1, 'stub korosi', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(17, 'UPT Malang', 'ULTG Mojokerto', 'Sekarputih - Ngoro', 150, '2', '2021-02-17', '2021-02-17', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '17', '40', '161', 2, 2, 1, 'stub korosi', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTT 150kV Surabaya Barat-Balongbendo', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(18, 'UPT Malang', 'ULTG Mojokerto', 'Sekarputih - Ngoro', 150, '3', '2021-02-17', '2021-02-17', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '20', '30', '161', 2, 1, 1, 'stub korosi', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTET 150kV Surabaya Barat- Balongbendo', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(19, 'UPT Malang', 'ULTG Mojokerto', 'Sekarputih - Siman - Mendalan', 70, '8A', '2021-02-05', '2021-02-05', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '41', '75', '161', 2, 3, 1, 'tapak retak', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTET 150kV Surabaya Barat- Balongbendo', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(20, 'UPT Malang', 'ULTG Mojokerto', 'Sekarputih - Siman - Mendalan', 70, '67A', '2021-02-05', '2021-02-05', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '38', '30', '161', 2, 1, 1, 'tapak retak', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTT 150kV Surabaya Barat-Balongbendo', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(21, 'UPT Malang', 'ULTG Mojokerto', 'Sekarputih - Siman - Mendalan', 70, '70A', '2021-02-05', '2021-02-05', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '68', '30', '161', 3, 1, 1, 'tapak retak', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTET 150kV Surabaya Barat- Balongbendo', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(22, 'UPT Malang', 'ULTG Mojokerto', 'Sekarputih - Siman - Mendalan', 70, '5', '2021-03-09', '2021-03-09', 'D.Barata', 'OK', 'OK', 'OK', 'OK', '71', '65', '161', 3, 3, 1, 'chimney terpendam tanah', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTET 150kV Surabaya Barat- Balongbendo', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(23, 'UPT Malang', 'ULTG Mojokerto', 'Sekarputih - Siman - Mendalan', 70, '5A', '2021-02-05', '2021-02-05', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '45', '35', '161', 2, 2, 1, 'chimney terpendam tanah', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTT 150kV Surabaya Barat-Balongbendo', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong'),
+(24, 'UPT Malang', 'ULTG Mojokerto', 'Sekarputih - Siman - Mendalan', 70, '35', '2021-02-05', '2021-02-05', 'D.Barata', 'NOK', 'OK', 'OK', 'OK', '15', '35', '161', 2, 2, 1, 'chimney terpendam tanah', '-', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'perlu pengerukan saja', 'Gangguan SUTET 150kV Surabaya Barat- Balongbendo', 'Gangguan SUTET 150kV Balongbendo- Sekarputih', 'Kosong', 'Kosong', 'kosong', 'kosong');
 
 -- --------------------------------------------------------
 
@@ -176,7 +206,7 @@ INSERT INTO `ms_menu` (`menu_id`, `menu_kode`, `menu_name`, `menu_link`, `menu_i
 (4, '01.3', 'Master Menu', 'ms_menu', '', 1, 2, 1, '01', '2021-04-02 22:07:08', 1, '2021-04-02 22:07:08', 1),
 (14, '02', 'Dashboard', 'admin', '', 1, 1, 0, '', '2021-04-10 00:00:00', NULL, '2021-04-10 00:00:00', NULL),
 (15, '03', 'Admin Data', '#', '', 1, 1, 0, '', '2021-04-10 00:00:00', NULL, '2021-04-10 00:00:00', NULL),
-(16, '03.1', 'Data Krisis', 'admin/krisis', '', 1, 2, 15, '03', '2021-04-10 00:00:00', NULL, '2021-04-10 00:00:00', NULL);
+(16, '03.1', 'Data Krisis', 'krisis', '', 1, 2, 15, '03', '2021-04-10 00:00:00', NULL, '2021-04-11 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -255,7 +285,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `krisis`
 --
 ALTER TABLE `krisis`
-  MODIFY `id_krisis` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_krisis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `ms_group`

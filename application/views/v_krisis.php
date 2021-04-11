@@ -12,107 +12,142 @@
     </div>
   </div>
 
-  <table id="example1" class="table table-bordered table-striped">
+  <table id="table-reference" class="table table-bordered table-striped">
     <thead>
       <tr>
-        <th>Tgl</th>
-        <th>Update</th>
-        <th>No</th>
-        <th>UPT</th>
-        <th>ULTG</th>
-        <th>Penghantar</th>
-        <th>KV</th>
-        <th>Tower</th>
-        <th>Jenis</th>
-        <th>KKP</th>
-        <th>Kelengkapan Lingkungan</th>
-        <th>Kelengkapan Pondasi</th>
-        <th>Kelengkapan Foto</th>
-        <th>Skor Lingkungan</th>
-        <th>Skor Pondasi</th>
-        <th>Skor Hujan</th>
-        <th>Klasifikasi Lingkungan</th>
-        <th>Klasifikasi Pondasi</th>
-        <th>Klasifikasi Hujan</th>
-        <th>Anomali</th>
-        <th>Tautan</th>
-        <th>Risiko</th>
-        <th>Mitigasi</th>
-        <th>Penanganan</th>
-        <th>Keterangan</th>
-        <th>Foto 1</th>
-        <th>Foto 2</th>
-        <th>Foto 3</th>
-        <th>Foto 4</th>
-        <th>Aksi</th>
+        <th class="text-center">No</th>
+        <th class="text-center">T/L</th>
+        <th class="text-center">Tower</th>
+        <th class="text-center">Jenis</th>
+        <th class="text-center">Klasifikasi Lingkungan</th>
+        <th class="text-center">Klasifikasi Pondasi</th>
+        <th class="text-center">Klasifikasi Hujan</th>
+        <th class="text-center">Aksi</th>
       </tr>
     </thead>
     <tbody>
-
-      <?php $no = 1;
-      foreach ($data as $admin) : ?>
-        <tr>
-          <td><?= $admin['tgl'] ?></td>
-          <td><?= $admin['update'] ?></td>
-          <td><?= $no ?></td>
-          <td><?= $admin['upt'] ?></td>
-          <td><?= $admin['ultg'] ?></td>
-          <td><?= $admin['penghantar'] ?></td>
-          <td><?= $admin['kv'] ?></td>
-          <td><?= $admin['tower'] ?></b></font>
-          </td>
-          <td><?= $admin['jenis'] ?></td>
-          <td>
-            <font color="red"><b><?= $admin['kkp'] ?>
-          </td>
-          <td>
-            <font color="red"><b><?= $admin['kelling'] ?>
-          </td>
-          <td>
-            <font color="red"><b><?= $admin['kelpo'] ?>
-          </td>
-          <td>
-            <font color="red"><b><?= $admin['kelfo'] ?>
-          </td>
-          <td>
-            <font color="red"><b><?= $admin['skoli'] ?>
-          </td>
-          <td>
-            <font color="red"><b><?= $admin['skopo'] ?>
-          </td>
-          <td>
-            <font color="red"><b><?= $admin['skohu'] ?>
-          </td>
-          <td>
-            <font color="red"><b><?= $admin['klali'] ?>
-          </td>
-          <td>
-            <font color="red"><b><?= $admin['klapo'] ?>
-          <td>
-            <font color="red"><b><?= $admin['klahu'] ?>
-          </td>
-          <td><?= $admin['anomali'] ?></td>
-          <td><?= $admin['tautan'] ?>
-          <td><?= $admin['risiko'] ?></td>
-          <td><?= $admin['mitigasi'] ?></td>
-          <td><?= $admin['penanganan'] ?></td>
-          <td><?= $admin['keterangan'] ?></td>
-          <td><img src="<?= base_url('template/data/' . $admin['foto']) ?>" class="img-responsive" style="width: 100px;height: 100xp"></td>
-          <td><img src="<?= base_url('template/data/' . $admin['foto1']) ?>" class="img-responsive" style="width: 100px;height: 100xp"></td>
-          <td><img src="<?= base_url('template/data/' . $admin['foto2']) ?>" class="img-responsive" style="width: 100px;height: 100xp"></td>
-          <td><img src="<?= base_url('template/data/' . $admin['foto3']) ?>" class="img-responsive" style="width: 100px;height: 100xp"></td>
-          <td><a href="<?= base_url('admin/krisis_edit/' . $admin['id_krisis']) ?>" class="btn btn-info">Edit</a> <a href="<?= base_url('admin/krisis_hapus/' . $admin['id_krisis']) ?>" class="btn btn-danger">Hapus</a><a href="<?= base_url('admin/details/' . $admin['id_krisis']) ?>" class="btn btn-success btn-md">Rincian</a></td>
-        </tr>
-
-      <?php $no++;
-      endforeach; ?>
-
     </tbody>
   </table>
   <script>
+    var tableAdvancedInit = function() {
+
+      var initTable1 = function() {
+        var target = '#table-reference';
+        var oTable = $(target).dataTable({
+          "displayStart": 0,
+          "pageLength": 10,
+          "lengthMenu": [
+            [10, 25, 50, 100, -1],
+            [10, 25, 50, 100, "All"]
+          ],
+          "processing": true, //Feature control the processing indicator.
+          "serverSide": true, //Feature control DataTables' server-side processing mode.
+          // Load data for the table's content from an Ajax source
+          "ajax": {
+            "url": "<?php echo base_url('krisis/get_data') ?>",
+            "dataType": "json",
+            "type": "POST",
+            // "data": function(d) {
+            //   d.f_mmsi = $('#f_mmsi').val();
+            // },
+          },
+          //Set column definition initialisation properties.
+          columnDefs: [{
+              "targets": [0, -1, -2, -3, -4], //last column
+              "orderable": false, //set not orderable
+            },
+            {
+              "targets": [0],
+              "width": "5%",
+              "className": "text-center"
+            },
+            {
+              "targets": [1],
+              "width": "20%"
+            },
+            {
+              "targets": [2],
+              "width": "5%"
+            },
+            {
+              "targets": [3],
+              "width": "10%"
+            },
+            {
+              "targets": [4],
+              "width": "15%",
+              "className": "text-center"
+            },
+            {
+              "targets": [5],
+              "width": "15%",
+              "className": "text-center"
+            },
+            {
+              "targets": [6],
+              "width": "15%",
+              "className": "text-center"
+            },
+            {
+              "targets": [7],
+              "width": "15%",
+              "className": "text-center"
+            },
+          ],
+          "order": [
+            [1, "asc"]
+          ],
+
+          "language": {
+            // language settings
+            "lengthMenu": "Display _MENU_ records",
+            "search": "Search _INPUT_ <a class='btn default bts' href='javascript:void(0);'><i class='fa fa-search'></i></a>",
+            "processing": '<img src="assets/plugins/global/images/owl.carousel/ajax-loader.gif"/><span>&nbsp;&nbsp;Loading...</span>',
+            "infoEmpty": "No records found to show",
+            "ajaxRequestGeneralError": "Could not complete request. Please check your internet connection",
+            "emptyTable": "No data available in table",
+            "zeroRecords": "No matching records found",
+            "paginate": {
+              "previous": "Prev",
+              "next": "Next",
+              "page": "Page",
+              "pageOf": "of"
+            }
+          },
+          "autoWidth": true, // disable fixed width and enable fluid table
+          "orderCellsTop": true, // make sortable only the first row in thead
+          "pagingType": "full_numbers", // pagination type(bootstrap, bootstrap_full_number or bootstrap_extended)
+        });
+
+        jQuery(target + '_wrapper .dataTables_filter input').addClass("form-control input-small input-inline"); // modify table search input
+        jQuery(target + '_wrapper .dataTables_length select').addClass("form-control input-small"); // modify table per page dropdown
+        jQuery(target + '_wrapper .dataTables_length select').select2(); // initialize select2 dropdown
+        jQuery(target + '_wrapper .dataTables_filter input').unbind();
+        jQuery(target + '_wrapper .dataTables_filter input').bind('keyup', function(e) {
+          if (e.keyCode == 13) {
+            oTable.fnFilter(this.value);
+          }
+        });
+        jQuery(target + '_wrapper .dataTables_filter a').bind('click', function(e) {
+          var key = jQuery(target + '_wrapper .dataTables_filter input').val();
+          oTable.fnFilter(key);
+        });
+      }
+
+      return {
+        // public functions
+        init: function() {
+          if (!jQuery().dataTable) {
+            return;
+          }
+          initTable1();
+        }
+      };
+    }();
     $(document).ready(function() {
-      $('#example1').DataTable({
-        "scrollX": true
-      });
+      tableAdvancedInit.init()
+      // $('#example1').DataTable({
+      //   "scrollX": true
+      // });
     });
   </script>

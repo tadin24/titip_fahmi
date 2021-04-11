@@ -39,7 +39,7 @@ class login_m extends CI_model
             where
                 mgm.group_id = $group_id
             order by
-                mm.menu_kode"
+                mm.menu_level,mm.menu_kode"
         )->result();
     }
 }

@@ -491,9 +491,36 @@ class Admin extends CI_controller
             // Jadi dilewat saja, tidak usah diimport
             if ($numrow > 1) {
                 // Kita push (add) array data ke variabel data
+                $klahu = $klapo = $klali = 0;
+                if (strtolower($row["P"]) == "aman") {
+                    $klali = 1;
+                } elseif (strtolower($row["P"]) == "waspada") {
+                    $klali = 2;
+                } elseif (strtolower($row["P"]) == "kritis") {
+                    $klali = 3;
+                } else {
+                    $klali = 0;
+                }
+
+                if (strtolower($row["Q"]) == "aman") {
+                    $klapo = 1;
+                } elseif (strtolower($row["Q"]) == "waspada") {
+                    $klapo = 2;
+                } elseif (strtolower($row["Q"]) == "kritis") {
+                    $klapo = 3;
+                } else {
+                    $klapo = 0;
+                }
+
+                if (strtolower($row["R"]) == "atas normal") {
+                    $klahu = 1;
+                } else {
+                    $klahu = 0;
+                }
+
                 array_push($data, array(
-                    'tgl' => $row['A'],
-                    'update' => $row['B'],
+                    'tgl' => date("Y-m-d", strtotime(str_replace("/", "-", $row['A']))),
+                    'update' => date("Y-m-d", strtotime(str_replace("/", "-", $row['B']))),
                     'upt' => $row['C'],
                     'ultg' => $row['D'],
                     'penghantar' => $row['E'],
@@ -507,19 +534,19 @@ class Admin extends CI_controller
                     'skoli' => $row['M'],
                     'skopo' => $row['N'],
                     'skohu' => $row['O'],
-                    'klali' => $row['P'],
-                    'klapo' => $row['Q'],
-                    'klahu' => $row['R'],
+                    'klali' => $klali,
+                    'klapo' => $klapo,
+                    'klahu' => $klahu,
                     'anomali' => $row['S'],
                     'tautan' => $row['T'],
                     'penanganan' => $row['U'],
                     'keterangan' => $row['V'],
                     'risiko' => $row['W'],
                     'mitigasi' => $row['X'],
-                    'foto' => $row['Y'],
-                    'foto1' => $row['Z'],
-                    'foto2' => $row['AA'],
-                    'foto3' => $row['AB']
+                    'foto1' => $row['Y'],
+                    'foto2' => $row['Z'],
+                    'foto3' => $row['AA'],
+                    'foto4' => $row['AB']
                 ));
             }
 

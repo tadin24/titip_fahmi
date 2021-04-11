@@ -62,7 +62,7 @@
   <!-- datepicker -->
   <script src="<?= base_url('template/admin') ?>/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
   <script src="<?= base_url('template/admin') ?>/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="<?= base_url('template/admin') ?>/bower_components/chart.js/Chart.js"></script>
+  <!-- <script src="<?= base_url('template/admin') ?>/bower_components/chart.js/Chart.js"></script> -->
 
   <script>
     $(function() {
@@ -95,6 +95,7 @@
   <script src="<?= base_url('template/vendor') ?>/jstree/dist/jstree.js"></script>
   <link rel="stylesheet" href="<?= base_url('template/vendor') ?>/select2/dist/css/select2.css">
   <script src="<?= base_url('template/vendor') ?>/select2/dist/js/select2.js"></script>
+  <script src="<?= base_url() ?>node_modules/chart.js/dist/chart.js"></script>
   <script>
     // $(document).ready(function() {
     //   // Sembunyikan alert validasi kosong
