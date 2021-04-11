@@ -37,7 +37,7 @@ class Login extends CI_controller
                 }
             } else {
                 $this->session->set_flashdata('pesan', '<div class="btn btn-primary">Maaf Informasi Login Tidak Di Kenali <br />
-                                     Username Dan Password Salah</div>');
+                Username Dan Password Salah</div>');
                 redirect(base_url(''));
             }
         } else {
